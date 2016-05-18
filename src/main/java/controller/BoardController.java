@@ -17,6 +17,7 @@ import model.BoardDAO;
 import model.BoardDTO;
 
 @Controller
+@RequestMapping("/emp/")
 public class BoardController {
 	
 	@Autowired
@@ -73,7 +74,7 @@ public class BoardController {
 			//return "notice.jsp";
 			
 			
-			return "list";
+			return "emp.list";
 		}
 		
 		 // 글등록 화면 처리
@@ -86,7 +87,7 @@ public class BoardController {
 		  //Tiles
 		  return  "customer.noticeReg";*/
 		
-			 return "regForm";
+			 return "emp.regForm";
 		   
 		 }
 
@@ -117,7 +118,7 @@ public class BoardController {
 				model.addAttribute("b", dto);
 				model.addAttribute("pg", pg);
 				
-				return "read"; // read.jsp
+				return "emp.read"; // read.jsp
 			}
 		 
 		 @RequestMapping(value = "empEdit.htm", method = RequestMethod.GET)
@@ -141,7 +142,7 @@ public class BoardController {
 		 
 		  //Tiles
 		  //return "customer.noticeEdit";
-		  return "boardEdit";
+		  return "emp.boardEdit";
 		 }
 
 		 //게시판 실제 수정처리
