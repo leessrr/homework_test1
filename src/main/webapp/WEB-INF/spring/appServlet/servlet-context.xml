@@ -7,22 +7,57 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<context:component-scan base-package="controller" />
 	
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
-
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
-
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	<context:component-scan base-package="kr.or.kosta" />
-	
-	
-	
 </beans:beans>
+
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+빈객체 생성 및 조립 (주입) 
+component-scan
+@Controller 대한 자동 빈 생성
+@Autowired 자동 빈 생성 
+
+아래 설정 필요
+<context:annotation-config />
+@Autowired 어노테이션 적용을 위한 빈을 자동 등록
+
+<context:component-scan base-package="ncontrollers" />
+
+	게시판 관련 : DAO , controller
+	Mybatis 설정으로 필요 없어요
+	<bean id="noticedao" class="dao.NewNoticeDao"></bean>
+   
+    회원관련 : DAO , Controller
+	<bean id="boardDao" class="model.BoardDAO"></bean> 
+
+	대문 페이지 관련 
+	
+	 Tiles 설정 START
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			Tiles 구성하는  xml 파일이 여러개
+			<list>
+				<value>/WEB-INF/Tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="urlBasedViewResolver" 
+	   class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" 
+		          value="org.springframework.web.servlet.view.tiles2.TilesView"	/>
+			
+	</bean>
+	 Tiles 설정 END 
+</beans> -->
